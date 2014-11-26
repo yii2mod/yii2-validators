@@ -1,5 +1,5 @@
 {
-    "name": "yii2mod/validators",
+    "name": "yii2mod/yii2-validators",
     "description": "Yii2 validators",
     "type": "yii2-extension",
     "keywords": ["yii2", "extension"],
