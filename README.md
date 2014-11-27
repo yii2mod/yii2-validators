@@ -1,4 +1,4 @@
 yii2-validators
 ===============
 
-*ECCValidator
+* ECCValidator
