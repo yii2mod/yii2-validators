@@ -1,4 +1,5 @@
 <?php
+
 namespace yii2mod\validators;
 
 use Yii;
@@ -17,16 +18,9 @@ use yii\validators\Validator;
  * References of the Mod 10 algorithm
  * http://en.wikipedia.org/wiki/Luhn_algorithm#Mod_10.2B5_Variant
  *
- *
- *
- * @see      http://www.yiiframework.com
- * @version  1.0
- * @access   public
- * @author   Antonio Ramirez http://www.ramirezcobos.com
  */
 class ECCValidator extends Validator
 {
-
     /**
      *
      * Detected Credit Card list
@@ -78,17 +72,19 @@ class ECCValidator extends Validator
     public $allowEmpty = true;
 
     /**
-     * (non-PHPdoc)
-     * @see CValidator::validateAttribute()
+     * Validate attribute
+     * @see Validator::validateAttribute()
+     * @param \yii\base\Model $object
+     * @param string $attribute
+     * @throws Exception
      */
     public function validateAttribute($object, $attribute)
     {
 
         $value = $object->$attribute;
-        if ($this->allowEmpty && $this->isEmpty($value))
+        if ($this->allowEmpty && $this->isEmpty($value)) {
             return;
-
-
+        }
         if (!$this->validateNumber($value)) {
             $message = $this->message !== null ? $this->message : Yii::t('ECCValidator', '{attribute} is not a valid Credit Card number.');
             $this->addError($object, $attribute, $message);
@@ -157,8 +153,8 @@ class ECCValidator extends Validator
      *
      * Validates holder, number, and dates of Credit Card numbers
      *
-     * @param string  $creditCardHolder
-     * @param string  $creditCardNumber
+     * @param string $creditCardHolder
+     * @param string $creditCardNumber
      * @param integer $creditCardExpiredMonth
      * @param integer $creditCardExpiredYear
      *
@@ -172,14 +168,9 @@ class ECCValidator extends Validator
     }
 
     /**
-     *
      * Checks Credit Card Prefixes
-     *
-     * @access  private
-     *
-     * @param   string  cardNumber
-     *
-     * @return  boolean true|false
+     * @param $cardNumber
+     * @return bool
      */
     protected function checkFormat($cardNumber)
     {
@@ -187,15 +178,10 @@ class ECCValidator extends Validator
     }
 
     /**
-     *
      * Check credit card number by Mod 10 algorithm
-     *
-     * @access  private
-     *
-     * @param   string   carNumber
-     *
-     * @return  boolean
-     * @see     http://en.wikipedia.org/wiki/Luhn_algorithm#Mod_10.2B5_Variant
+     * @param $cardNumber
+     * @return bool
+     * @see http://en.wikipedia.org/wiki/Luhn_algorithm#Mod_10.2B5_Variant
      */
     protected function mod10($cardNumber)
     {
