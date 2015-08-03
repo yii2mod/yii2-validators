@@ -22,7 +22,7 @@ to the require section of your `composer.json` file.
 
 Usage
 -----
-1. ECCValidator
+* **Credit Card Validator**
 ```php
     public function rules()
     {
@@ -31,8 +31,8 @@ Usage
         ];
     }
 ```
-2. PhoneValidator
-**Yii2 phone validator is a validator uses phone number util to validate and format the phone number attribute of model.**
+
+*  **Yii2 phone validator is a validator uses phone number util to validate and format the phone number attribute of model.**
 ```php
     public function rules()
     {
