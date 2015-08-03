@@ -24,13 +24,22 @@ Usage
 -----
 1. ECCValidator
 ```php
-    /**
-     * @return array the validation rules.
-     */
     public function rules()
     {
         return [
             [['creditCard'], \yii2mod\validators\ECCValidator::className()],
+        ];
+    }
+```
+2. PhoneValidator
+**Yii2 phone validator is a validator uses phone number util to validate and format the phone number attribute of model.**
+```php
+    public function rules()
+    {
+        return [
+            [['phone'], \yii2mod\validators\PhoneValidator::className(), 'country' => 'US'], // OR
+            [['phone'], \yii2mod\validators\PhoneValidator::className(), 'countryAttribute' => 'country'], // OR
+            [['phone'], \yii2mod\validators\PhoneValidator::className(), 'countryCodeAttribute' => 'countryCode'], 
         ];
     }
 ```
