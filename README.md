@@ -1,6 +1,8 @@
 Yii2 validators
 ===============================================
 
+Collection of useful validators for Yii Framework 2.0
+
 Installation
 ------------
 
