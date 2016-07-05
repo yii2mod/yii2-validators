@@ -3,6 +3,9 @@ Yii2 validators
 
 Collection of useful validators for Yii Framework 2.0
 
+[![Latest Stable Version](https://poser.pugx.org/yii2mod/yii2-validators/v/stable)](https://packagist.org/packages/yii2mod/yii2-validators) [![Total Downloads](https://poser.pugx.org/yii2mod/yii2-validators/downloads)](https://packagist.org/packages/yii2mod/yii2-validators) [![License](https://poser.pugx.org/yii2mod/yii2-validators/license)](https://packagist.org/packages/yii2mod/yii2-validators)
+[![Build Status](https://travis-ci.org/yii2mod/yii2-validators.svg?branch=master)](https://travis-ci.org/yii2mod/yii2-validators)
+
 Installation
 ------------
 
