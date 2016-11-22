@@ -7,6 +7,7 @@ use yii2mod\validators\ECCValidator;
 
 /**
  * Class ECCValidatorTest
+ *
  * @package yii2mod\validators\tests
  */
 class ECCValidatorTest extends TestCase
@@ -19,6 +20,7 @@ class ECCValidatorTest extends TestCase
             ['creditCard', ECCValidator::className(), 'format' => [ECCValidator::VISA]],
         ]);
         $this->assertTrue($model->hasErrors());
+
         // valid card number
         $model->creditCard = 4024007160847777;
         $this->assertTrue($model->validate());
@@ -32,6 +34,7 @@ class ECCValidatorTest extends TestCase
             ['creditCard', ECCValidator::className(), 'format' => [ECCValidator::MASTERCARD]],
         ]);
         $this->assertTrue($model->hasErrors());
+
         // valid card number
         $model->creditCard = 5286235772097289;
         $this->assertTrue($model->validate());
@@ -45,6 +48,7 @@ class ECCValidatorTest extends TestCase
             ['creditCard', ECCValidator::className(), 'format' => [ECCValidator::AMERICAN_EXPRESS]],
         ]);
         $this->assertTrue($model->hasErrors());
+
         // valid card number
         $model->creditCard = 344295464720540;
         $this->assertTrue($model->validate());
@@ -58,6 +62,7 @@ class ECCValidatorTest extends TestCase
             ['creditCard', ECCValidator::className(), 'format' => [ECCValidator::DISCOVER]],
         ]);
         $this->assertTrue($model->hasErrors());
+
         // valid card number
         $model->creditCard = 6011009662232292;
         $this->assertTrue($model->validate());
@@ -71,6 +76,7 @@ class ECCValidatorTest extends TestCase
             ['creditCard', ECCValidator::className(), 'format' => [ECCValidator::DINERS_CLUB]],
         ]);
         $this->assertTrue($model->hasErrors());
+
         // valid card number
         $model->creditCard = 36680479066901;
         $this->assertTrue($model->validate());
@@ -84,6 +90,7 @@ class ECCValidatorTest extends TestCase
             ['creditCard', ECCValidator::className(), 'format' => [ECCValidator::JCB]],
         ]);
         $this->assertTrue($model->hasErrors());
+
         // valid card number
         $model->creditCard = 3112296714419317;
         $this->assertTrue($model->validate());
@@ -97,6 +104,7 @@ class ECCValidatorTest extends TestCase
             ['creditCard', ECCValidator::className(), 'format' => [ECCValidator::VOYAGER]],
         ]);
         $this->assertTrue($model->hasErrors());
+
         // valid card number
         $model->creditCard = 869985359807593;
         $this->assertTrue($model->validate());
@@ -110,6 +118,7 @@ class ECCValidatorTest extends TestCase
             ['creditCard', ECCValidator::className(), 'format' => [ECCValidator::ELECTRON]],
         ]);
         $this->assertTrue($model->hasErrors());
+
         // valid card number
         $model->creditCard = 4175008402735512;
         $this->assertTrue($model->validate());
@@ -123,6 +132,7 @@ class ECCValidatorTest extends TestCase
             ['creditCard', ECCValidator::className(), 'format' => [ECCValidator::LASER]],
         ]);
         $this->assertTrue($model->hasErrors());
+
         // valid card number
         $model->creditCard = 6709137039789368;
         $this->assertTrue($model->validate());
@@ -136,6 +146,7 @@ class ECCValidatorTest extends TestCase
             ['creditCard', ECCValidator::className(), 'format' => [ECCValidator::SOLO]],
         ]);
         $this->assertTrue($model->hasErrors());
+
         // valid card number
         $model->creditCard = 6334580500000000;
         $this->assertTrue($model->validate());
@@ -149,6 +160,7 @@ class ECCValidatorTest extends TestCase
             ['creditCard', ECCValidator::className(), 'format' => [ECCValidator::MAESTRO]],
         ]);
         $this->assertTrue($model->hasErrors());
+
         // valid card number
         $model->creditCard = 6762835098779303;
         $this->assertTrue($model->validate());

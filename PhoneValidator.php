@@ -2,11 +2,11 @@
 
 namespace yii2mod\validators;
 
+use libphonenumber\NumberParseException;
+use libphonenumber\PhoneNumberFormat;
+use libphonenumber\PhoneNumberUtil;
 use Yii;
 use yii\validators\Validator;
-use libphonenumber\PhoneNumberUtil;
-use libphonenumber\PhoneNumberFormat;
-use libphonenumber\NumberParseException;
 
 /**
  * Phone validator class that validates phone numbers for given
@@ -16,23 +16,23 @@ use libphonenumber\NumberParseException;
 class PhoneValidator extends Validator
 {
     /**
-     * @var bool $strict If country is not set or selected adds error
+     * @var bool If country is not set or selected adds error
      */
     public $strict = true;
     /**
-     * @var string $country The country is fixed
+     * @var string The country is fixed
      */
     public $country;
     /**
-     * @var string $countryAttribute The country attribute of model
+     * @var string The country attribute of model
      */
     public $countryAttribute;
     /**
-     * @var string $countryCodeAttribute
+     * @var string
      */
     public $countryCodeAttribute;
     /**
-     * @var bool $format If phone number is valid formats value with international phone number
+     * @var bool If phone number is valid formats value with international phone number
      */
     public $format = true;
     /**
@@ -50,8 +50,10 @@ class PhoneValidator extends Validator
 
     /**
      * Validate attribute
+     *
      * @param \yii\base\Model $model
      * @param string $attribute
+     *
      * @return bool|void
      */
     public function validateAttribute($model, $attribute)
@@ -67,6 +69,7 @@ class PhoneValidator extends Validator
         // if empty country and used strict mode
         if (empty($country) && $this->strict) {
             $this->addError($model, $attribute, Yii::t('app', $this->strictModeMessage));
+
             return false;
         }
         if (empty($country)) {
@@ -79,12 +82,13 @@ class PhoneValidator extends Validator
                 if ($this->format) {
                     $model->$attribute = $phoneUtil->format($numberProto, PhoneNumberFormat::INTERNATIONAL);
                 }
+
                 return true;
             } else {
                 $this->addError($model, $attribute, Yii::t('app', $this->message));
+
                 return false;
             }
-
         } catch (NumberParseException $e) {
             $this->addError($model, $attribute, Yii::t('app', $this->numberParseExceptionMessage));
         }

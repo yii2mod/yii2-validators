@@ -1,8 +1,13 @@
 {
     "name": "yii2mod/yii2-validators",
-    "description": "Yii2 validators",
+    "description": "Collection of useful validators for Yii Framework 2.0",
     "type": "yii2-extension",
-    "keywords": ["yii2", "extension"],
+    "keywords": [
+        "yii2",
+        "yii2 validators",
+        "yii2 card validator",
+        "yii2 phone validator"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -17,6 +22,9 @@
     "require": {
         "yiisoft/yii2": "*",
         "giggsey/libphonenumber-for-php": "~7.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "~1.7"
     },
     "autoload": {
         "psr-4": {

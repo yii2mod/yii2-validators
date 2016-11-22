@@ -6,6 +6,7 @@ use yii\base\DynamicModel;
 
 /**
  * Class PhoneValidatorTest
+ *
  * @package yii2mod\validators\tests
  */
 class PhoneValidatorTest extends TestCase

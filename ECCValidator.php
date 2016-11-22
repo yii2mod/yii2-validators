@@ -7,7 +7,6 @@ use yii\base\Exception;
 use yii\validators\Validator;
 
 /**
- *
  * ECCValidator class
  *
  * Credit Card Validator
@@ -17,14 +16,14 @@ use yii\validators\Validator;
  *
  * References of the Mod 10 algorithm
  * http://en.wikipedia.org/wiki/Luhn_algorithm#Mod_10.2B5_Variant
- *
  */
 class ECCValidator extends Validator
 {
     /**
-     *
      * Detected Credit Card list
+     *
      * @var string
+     *
      * @link http://en.wikipedia.org/wiki/Bank_card_number#cite_note-NoMoreBankCard-4
      */
     const MAESTRO = 'Maestro';
@@ -41,7 +40,6 @@ class ECCValidator extends Validator
     const LASER = 'Laser';
     const ALL = 'All';
     /**
-     *
      * @var array holds the regex patterns to check for valid
      * Credit Card number prefixes
      */
@@ -58,29 +56,30 @@ class ECCValidator extends Validator
         self::SWITCH_CARD => '/^(?:49(03(0[2-9]|3[5-9])|11(0[1-2]|7[4-9]|8[1-2])|36[0-9]{2})\\d{10}(\\d{2,3})?)|(?:564182\\d{10}(\\d{2,3})?)|(6(3(33[0-4][0-9])|759[0-9]{2})\\d{10}(\\d{2,3})?)$/',
         self::ELECTRON => '/^(?:417500|4026\\d{2}|4917\\d{2}|4913\\d{2}|4508\\d{2}|4844\\d{2})\\d{10}$/',
         self::LASER => '/^(?:6304|6706|6771|6709)\\d{12}(\\d{2,3})?$/',
-        self::ALL => '/^(5[1-5][0-9]{14}|4[0-9]{12}([0-9]{3})?|3[47][0-9]{13}|3(0[0-5]|[68][0-9])[0-9]{11}|(6011\d{12}|65\d{14})|(3[0-9]{4}|2131|1800)[0-9]{11}|2(?:014|149)\\d{11}|8699[0-9]{11}|(6334[5-9][0-9]|6767[0-9]{2})\\d{10}(\\d{2,3})?|(?:5020|6\\d{3})\\d{12}|56(10\\d\\d|022[1-5])\\d{10}|(?:49(03(0[2-9]|3[5-9])|11(0[1-2]|7[4-9]|8[1-2])|36[0-9]{2})\\d{10}(\\d{2,3})?)|(?:564182\\d{10}(\\d{2,3})?)|(6(3(33[0-4][0-9])|759[0-9]{2})\\d{10}(\\d{2,3})?)|(?:417500|4026\\d{2}|4917\\d{2}|4913\\d{2}|4508\\d{2}|4844\\d{2})\\d{10}|(?:417500|4026\\d{2}|4917\\d{2}|4913\\d{2}|4508\\d{2}|4844\\d{2})\\d{10})$/'
+        self::ALL => '/^(5[1-5][0-9]{14}|4[0-9]{12}([0-9]{3})?|3[47][0-9]{13}|3(0[0-5]|[68][0-9])[0-9]{11}|(6011\d{12}|65\d{14})|(3[0-9]{4}|2131|1800)[0-9]{11}|2(?:014|149)\\d{11}|8699[0-9]{11}|(6334[5-9][0-9]|6767[0-9]{2})\\d{10}(\\d{2,3})?|(?:5020|6\\d{3})\\d{12}|56(10\\d\\d|022[1-5])\\d{10}|(?:49(03(0[2-9]|3[5-9])|11(0[1-2]|7[4-9]|8[1-2])|36[0-9]{2})\\d{10}(\\d{2,3})?)|(?:564182\\d{10}(\\d{2,3})?)|(6(3(33[0-4][0-9])|759[0-9]{2})\\d{10}(\\d{2,3})?)|(?:417500|4026\\d{2}|4917\\d{2}|4913\\d{2}|4508\\d{2}|4844\\d{2})\\d{10}|(?:417500|4026\\d{2}|4917\\d{2}|4913\\d{2}|4508\\d{2}|4844\\d{2})\\d{10})$/',
     ];
     /**
-     *
      * @var string set with selected Credit Card type to check -ie ECCValidator::MAESTRO
      */
     public $format = self::ALL;
     /**
-     * @var boolean whether the attribute value can be null or empty. Defaults to true,
-     * meaning that if the attribute is empty, it is considered valid.
+     * @var bool whether the attribute value can be null or empty. Defaults to true,
+     * meaning that if the attribute is empty, it is considered valid
      */
     public $allowEmpty = true;
 
     /**
      * Validate attribute
+     *
      * @see Validator::validateAttribute()
+     *
      * @param \yii\base\Model $object
      * @param string $attribute
+     *
      * @throws Exception
      */
     public function validateAttribute($object, $attribute)
     {
-
         $value = $object->$attribute;
         if ($this->allowEmpty && $this->isEmpty($value)) {
             return;
@@ -92,20 +91,20 @@ class ECCValidator extends Validator
     }
 
     /**
-     *
      * Validates a Credit Card number
      *
      * @param string $creditCardNumber
      *
      * @throws \yii\base\Exception
+     *
      * @return bool
      * @return bool
      */
     public function validateNumber($creditCardNumber)
     {
-
-        if (!$this->checkType())
+        if (!$this->checkType()) {
             throw new Exception(Yii::t('ECCValidator', 'The "format" property must be specified with a supported Credit Card format.'));
+        }
 
         $creditCardNumber = preg_replace('/[ -]+/', '', $creditCardNumber);
 
@@ -113,22 +112,24 @@ class ECCValidator extends Validator
     }
 
     /**
-     *
      * Validates a Credit Card date
      *
-     * @param integer $creditCardExpiredMonth
-     * @param integer $creditCardExpiredYear
+     * @param int $creditCardExpiredMonth
+     * @param int $creditCardExpiredYear
      *
      * @return bool
      */
     public function validateDate($creditCardExpiredMonth, $creditCardExpiredYear)
     {
-
         $currentYear = intval(date('Y'));
         $currentMonth = intval(date('m'));
 
-        if (is_scalar($creditCardExpiredMonth)) $creditCardExpiredMonth = intval($creditCardExpiredMonth);
-        if (is_scalar($creditCardExpiredYear)) $creditCardExpiredYear = intval($creditCardExpiredYear);
+        if (is_scalar($creditCardExpiredMonth)) {
+            $creditCardExpiredMonth = intval($creditCardExpiredMonth);
+        }
+        if (is_scalar($creditCardExpiredYear)) {
+            $creditCardExpiredYear = intval($creditCardExpiredYear);
+        }
 
         return is_integer($creditCardExpiredMonth) && is_integer($creditCardExpiredYear) && $creditCardExpiredMonth <= 12
         && ($creditCardExpiredMonth >= 1 && $creditCardExpiredYear > $currentYear
@@ -136,7 +137,6 @@ class ECCValidator extends Validator
     }
 
     /**
-     *
      * Validates Credit Card holder
      *
      * @param string $creditCardHolder
@@ -145,31 +145,29 @@ class ECCValidator extends Validator
      */
     public function validateName($creditCardHolder)
     {
-
         return !empty($creditCardHolder) && preg_match('/^[A-Z ]+$/i', $creditCardHolder);
     }
 
     /**
-     *
      * Validates holder, number, and dates of Credit Card numbers
      *
      * @param string $creditCardHolder
      * @param string $creditCardNumber
-     * @param integer $creditCardExpiredMonth
-     * @param integer $creditCardExpiredYear
+     * @param int $creditCardExpiredMonth
+     * @param int $creditCardExpiredYear
      *
      * @return bool
      */
     public function validateAll($creditCardHolder, $creditCardNumber, $creditCardExpiredMonth, $creditCardExpiredYear)
     {
-
         return $this->validateName($creditCardHolder) && $this->validateNumber($creditCardNumber) && $this->validateDate($creditCardExpiredMonth, $creditCardExpiredYear);
-
     }
 
     /**
      * Checks Credit Card Prefixes
+     *
      * @param $cardNumber
+     *
      * @return bool
      */
     protected function checkFormat($cardNumber)
@@ -179,8 +177,11 @@ class ECCValidator extends Validator
 
     /**
      * Check credit card number by Mod 10 algorithm
+     *
      * @param $cardNumber
+     *
      * @return bool
+     *
      * @see http://en.wikipedia.org/wiki/Luhn_algorithm#Mod_10.2B5_Variant
      */
     protected function mod10($cardNumber)
@@ -199,34 +200,35 @@ class ECCValidator extends Validator
             }
             $numSum += $currentNum;
         }
-        return ($numSum % 10 == 0);
+
+        return $numSum % 10 == 0;
     }
 
     /**
-     *
      * Checks if Credit Card Format is a supported one
      * and builds new pattern format in case user has
      * a mixed match search (mastercard|visa)
      *
-     * @access private
-     * @return boolean
+     * @return bool
      */
     protected function checkType()
     {
-
         if (is_scalar($this->format)) {
             return array_key_exists($this->format, $this->patterns);
-        } else if (is_array($this->format)) {
-            $pattern = array();
+        } elseif (is_array($this->format)) {
+            $pattern = [];
             foreach ($this->format as $f) {
-                if (!array_key_exists($f, $this->patterns)) return false;
+                if (!array_key_exists($f, $this->patterns)) {
+                    return false;
+                }
                 $pattern[] = substr($this->patterns[$f], 2, strlen($this->patterns[$f]) - 4);
             }
             $this->format = 'custom';
-            $this->patterns[$this->format] = '/^(' . join('|', $pattern) . ')$/';
+            $this->patterns[$this->format] = '/^(' . implode('|', $pattern) . ')$/';
+
             return true;
         }
-        return false;
 
+        return false;
     }
 }
