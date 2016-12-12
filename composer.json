@@ -24,7 +24,7 @@
         "giggsey/libphonenumber-for-php": "~7.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "~1.7"
+        "friendsofphp/php-cs-fixer": "~2.0"
     },
     "autoload": {
         "psr-4": {

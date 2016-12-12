@@ -24,7 +24,7 @@ class ECCValidator extends Validator
      *
      * @var string
      *
-     * @link http://en.wikipedia.org/wiki/Bank_card_number#cite_note-NoMoreBankCard-4
+     * @see http://en.wikipedia.org/wiki/Bank_card_number#cite_note-NoMoreBankCard-4
      */
     const MAESTRO = 'Maestro';
     const SOLO = 'Solo';
@@ -131,7 +131,7 @@ class ECCValidator extends Validator
             $creditCardExpiredYear = intval($creditCardExpiredYear);
         }
 
-        return is_integer($creditCardExpiredMonth) && is_integer($creditCardExpiredYear) && $creditCardExpiredMonth <= 12
+        return is_int($creditCardExpiredMonth) && is_int($creditCardExpiredYear) && $creditCardExpiredMonth <= 12
         && ($creditCardExpiredMonth >= 1 && $creditCardExpiredYear > $currentYear
             && $creditCardExpiredYear < $currentYear + 21) || ($creditCardExpiredYear == $currentYear && $creditCardExpiredMonth >= $currentMonth);
     }
